@@ -14,4 +14,4 @@ void logisticalFuncionalTest();
 void complexFuncionalTest();
 
 
-#endif // UNIT_TESTS_H
+#endif

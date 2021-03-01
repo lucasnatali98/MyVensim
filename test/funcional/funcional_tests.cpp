@@ -6,7 +6,7 @@ void exponentialFuncionalTest()
     Model *model = new Model();
     System* s1 = new System("pop1", 100);
     System* s2 = new System("pop2", 0);
-    Flow *flow = new ExponentialFlow(); //Definir classe exponential, que herdará de Flow
+    Flow *flow = new ExponentialFlow();
     flow->setSource(s1);
     flow->setTarget(s2);
     flow->setName("ExpFlow");
@@ -21,6 +21,7 @@ void exponentialFuncionalTest()
     assert(fabs(s2->getValue() - 63.3968) < 0.0001);
     assert(fabs(flow->execute() - 0.366032) < 0.0001);
 
+
 }
 
 void logisticalFuncionalTest()
@@ -28,12 +29,11 @@ void logisticalFuncionalTest()
 
     System* s1 = new System("p1", 100);
     System* s2 = new System("p2", 10);
-    Flow *flow = new LogisticFlow(); //Definir classe logistica
+    Flow *flow = new LogisticFlow();
     Model *model = new Model();
     flow->setSource(s1);
     flow->setTarget(s2);
     flow->setName("LogFlow");
-    //flow->connect(s1,s2);
     model->add(s1);
     model->add(s2);
     model->add(flow);
@@ -41,6 +41,7 @@ void logisticalFuncionalTest()
     assert(fabs(s1->getValue()-88.2167) < 0.0001);
     assert(fabs(s2->getValue()-21.7834) < 0.0001);
     assert(fabs(flow->execute()-0.150046) < 0.0001);
+
 }
 
 void complexFuncionalTest()
@@ -79,12 +80,13 @@ void complexFuncionalTest()
     ComplexModel->add(v);
 
     ComplexModel->execute(0, 100,1);
-    //ComplexModel->results();
+
 
     assert(fabs(q1->getValue() - 31.8513) <= 0.0001);
     assert(fabs(q2->getValue() - 18.4003) <= 0.0001);
     assert(fabs(q3->getValue() - 77.1143) <= 0.0001);
     assert(fabs(q4->getValue() - 56.1728) <= 0.0001);
     assert(fabs(q5->getValue() - 16.4612) <= 0.0001);
+
 }
 

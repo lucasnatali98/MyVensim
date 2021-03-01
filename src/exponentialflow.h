@@ -9,7 +9,7 @@ class ExponentialFlow : public Flow
 public:
     ExponentialFlow();
     ExponentialFlow(string name, System *source, System *target);
-    friend ostream &operator<<(ostream &out, const Flow &f);
+    friend ostream &operator<<(ostream &out, const ExponentialFlow &f);
     float execute();
 };
 

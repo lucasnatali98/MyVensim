@@ -2,9 +2,12 @@
 #define MODEL_H
 #include <vector>
 #include <string>
-#include "flow.h"
+
 #include "system.h"
 #include <iostream>
+#include <algorithm>
+#include "exponentialflow.h"
+#include "logisticflow.h"
 using namespace std;
 
 class Model
@@ -19,17 +22,28 @@ private:
 public:
     Model();
     Model(string name);
+
     virtual ~Model();
-    void results();
-    void execute(double start, double final, double inc);
+
     void add(System *s);
     void add(Flow *f);
+
+    bool remove(System *system);
+    bool remove(Flow *flow);
+
+    void printSystems();
+    void printFlows();
+
+    void results();
+    void execute(double start, double final, double inc);
+
     vector<Flow *> getFlows() const;
     vector<System *> getSys() const;
-    void remove();
-    void update();
     string getName() const;
     void setName(const string &value);
+
+
+
 };
 
 #endif // MODEL_H

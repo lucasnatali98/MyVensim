@@ -11,6 +11,53 @@ vector<System *> Model::getSys() const
     return sys;
 }
 
+bool Model::remove(System *system)
+{
+    if(system != nullptr){
+        vector<System*>::iterator itSystem;
+        itSystem = find(sys.begin(), sys.end(), system);
+        sys.erase(itSystem);
+        return true;
+    }
+    return false;
+}
+
+bool Model::remove(Flow *flow)
+{
+    if(flow != nullptr){
+        vector<Flow*>::iterator itFlow;
+        itFlow = find(flows.begin(), flows.end(), flow);
+        flows.erase(itFlow);
+        return true;
+    }
+
+    return false;
+
+}
+
+void Model::printSystems()
+{
+    for(auto it : sys){
+        cout<<*it<<endl;
+    }
+}
+
+void Model::printFlows()
+{
+    for(vector<Flow*>::iterator it = flows.begin(); it != flows.end(); it++){
+        ExponentialFlow *ef = dynamic_cast<ExponentialFlow*>(*it);
+        LogisticFlow *lf = dynamic_cast<LogisticFlow*>(*it);
+
+        if(ef != nullptr){
+            cout<<*ef<<endl;
+        }
+        if(lf != nullptr){
+            cout<<*lf<<endl;
+        }
+    }
+
+}
+
 Model::Model()
 {
     this->name = "Default";
@@ -26,9 +73,10 @@ Model::~Model(){}
 
 
 
-void Model::results()
-{
-
+void Model::results(){
+    for(auto it : sys){
+        cout<<*it<<endl;
+    }
 }
 
 void Model::execute(double start, double final, double inc)
@@ -49,7 +97,6 @@ void Model::execute(double start, double final, double inc)
             k++;
         }
     }
-
 }
 
 void Model::add(System *system)
@@ -75,22 +122,16 @@ Model &Model::operator=(Model &copy)
 {
     if(&copy == this) return (*this);
 
-    for (auto&& item : flows) {
-        delete item;
-    }
-    for (auto&& item : sys){
-        delete item;
-    }
 
-    System* aux;
+    System* saux;
     for(vector<System*>::iterator it = copy.getSys().begin(); it != copy.getSys().end(); ++it){
-        aux = (*it);
-        add(aux);
+        saux = (*it);
+        this->add(saux);
     }
-    Flow* bux;
+    Flow* faux;
     for(vector<Flow*>::iterator it = copy.getFlows().begin(); it != copy.getFlows().end(); ++it){
-        bux = (*it);
-        this->add(bux);
+        faux = (*it);
+        this->add(faux);
     }
 
     return (*this);
@@ -103,7 +144,7 @@ Model::Model(const Model &copy)
     System* saux;
     for(vector<System*>::iterator it = copy.getSys().begin(); it != copy.getSys().end(); ++it){
         saux = (*it);
-        add(saux);
+        this->add(saux);
     }
 
     Flow* faux;
