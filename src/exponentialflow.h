@@ -3,7 +3,9 @@
 #include "flow.h"
 #include <iostream>
 using namespace std;
-
+/**
+ * @brief The ExponentialFlow class
+ */
 class ExponentialFlow : public Flow
 {
 public:

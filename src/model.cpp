@@ -1,16 +1,6 @@
 #include "model.h"
 
 
-vector<Flow *> Model::getFlows() const
-{
-    return flows;
-}
-
-vector<System *> Model::getSys() const
-{
-    return sys;
-}
-
 bool Model::remove(System *system)
 {
     if(system != nullptr){
@@ -44,6 +34,7 @@ void Model::printSystems()
 
 void Model::printFlows()
 {
+
     for(vector<Flow*>::iterator it = flows.begin(); it != flows.end(); it++){
         ExponentialFlow *ef = dynamic_cast<ExponentialFlow*>(*it);
         LogisticFlow *lf = dynamic_cast<LogisticFlow*>(*it);
@@ -61,6 +52,7 @@ void Model::printFlows()
 Model::Model()
 {
     this->name = "Default";
+
 
 }
 
@@ -123,16 +115,31 @@ Model &Model::operator=(Model &copy)
     if(&copy == this) return (*this);
 
 
+    for(vector<System*>::iterator it= sys.begin(); it!=sys.end(); it++)
+    {
+        delete *it;
+    }
+
+    this->sys.clear();
+
+    for(vector<Flow*>::iterator it=flows.begin(); it!=flows.end(); it++)
+    {
+        delete *it;
+    }
+    this->flows.clear();
+
+
     System* saux;
-    for(vector<System*>::iterator it = copy.getSys().begin(); it != copy.getSys().end(); ++it){
+    for(vector<System*>::iterator it = copy.sys.begin(); it != copy.sys.end(); ++it){
         saux = (*it);
         this->add(saux);
     }
     Flow* faux;
-    for(vector<Flow*>::iterator it = copy.getFlows().begin(); it != copy.getFlows().end(); ++it){
+    for(vector<Flow*>::iterator it = copy.flows.begin(); it != copy.flows.end(); ++it){
         faux = (*it);
         this->add(faux);
     }
+
 
     return (*this);
 }
@@ -142,13 +149,13 @@ Model::Model(const Model &copy)
     this->setName(copy.getName());
 
     System* saux;
-    for(vector<System*>::iterator it = copy.getSys().begin(); it != copy.getSys().end(); ++it){
+    for(vector<System*>::const_iterator it = copy.sys.begin(); it != copy.sys.end(); ++it){
         saux = (*it);
         this->add(saux);
     }
 
     Flow* faux;
-    for(vector<Flow*>::iterator it = copy.getFlows().begin(); it != copy.getFlows().end(); ++it){
+    for(vector<Flow*>::const_iterator it = copy.flows.begin(); it != copy.flows.end(); ++it){
         faux = (*it);
         this->add(faux);
     }

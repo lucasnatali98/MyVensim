@@ -2,27 +2,31 @@
 #define MODEL_H
 #include <vector>
 #include <string>
+#include <algorithm>
+#include <iostream>
 
 #include "system.h"
-#include <iostream>
-#include <algorithm>
 #include "exponentialflow.h"
 #include "logisticflow.h"
 using namespace std;
-
+/**
+ * @brief The Model class
+ */
 class Model
 {
 protected:
     vector<Flow*> flows;
     vector<System*> sys;
     string name;
+
 private:
     Model &operator=(Model&);
     Model(const Model &copy);
 public:
     Model();
     Model(string name);
-
+    typedef typename vector<Flow*>::iterator itFlow;
+    typedef typename vector<System*>::iterator itSystem;
     virtual ~Model();
 
     void add(System *s);
@@ -37,8 +41,7 @@ public:
     void results();
     void execute(double start, double final, double inc);
 
-    vector<Flow *> getFlows() const;
-    vector<System *> getSys() const;
+
     string getName() const;
     void setName(const string &value);
 

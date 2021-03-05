@@ -21,6 +21,7 @@ void exponentialFuncionalTest()
     assert(fabs(s2->getValue() - 63.3968) < 0.0001);
     assert(fabs(flow->execute() - 0.366032) < 0.0001);
 
+    delete model;
 
 }
 
@@ -31,6 +32,7 @@ void logisticalFuncionalTest()
     System* s2 = new System("p2", 10);
     Flow *flow = new LogisticFlow();
     Model *model = new Model();
+
     flow->setSource(s1);
     flow->setTarget(s2);
     flow->setName("LogFlow");
@@ -42,6 +44,8 @@ void logisticalFuncionalTest()
     assert(fabs(s2->getValue()-21.7834) < 0.0001);
     assert(fabs(flow->execute()-0.150046) < 0.0001);
 
+
+    delete model;
 }
 
 void complexFuncionalTest()
@@ -82,11 +86,12 @@ void complexFuncionalTest()
     ComplexModel->execute(0, 100,1);
 
 
-    assert(fabs(q1->getValue() - 31.8513) <= 0.0001);
-    assert(fabs(q2->getValue() - 18.4003) <= 0.0001);
-    assert(fabs(q3->getValue() - 77.1143) <= 0.0001);
-    assert(fabs(q4->getValue() - 56.1728) <= 0.0001);
-    assert(fabs(q5->getValue() - 16.4612) <= 0.0001);
+    assert(fabs(q1->getValue() - 31.8513) < 0.0001);
+    assert(fabs(q2->getValue() - 18.4003) < 0.0001);
+    assert(fabs(q3->getValue() - 77.1143) < 0.0001);
+    assert(fabs(q4->getValue() - 56.1728) < 0.0001);
+    assert(fabs(q5->getValue() - 16.4612) < 0.0001);
 
+    delete ComplexModel;
 }
 

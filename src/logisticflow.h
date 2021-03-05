@@ -3,6 +3,9 @@
 #include <iostream>
 #include "flow.h"
 using namespace std;
+/**
+ * @brief The LogisticFlow class
+ */
 class LogisticFlow : public Flow
 {
 public:

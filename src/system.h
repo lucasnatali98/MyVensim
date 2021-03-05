@@ -3,6 +3,9 @@
 #include <string>
 #include <iostream>
 using namespace std;
+/**
+ * @brief The System class
+ */
 
 class System
 {

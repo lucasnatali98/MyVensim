@@ -48,7 +48,7 @@ System &System::operator=(System &copy)
 System::System(const System &sys)
 {
     value = sys.value;
-    name= sys.name;
+    name = sys.name;
 }
 
 System::~System(){}
