@@ -3,9 +3,9 @@
 void exponentialFuncionalTest()
 {
 
-    Model *model = new Model();
-    System* s1 = new System("pop1", 100);
-    System* s2 = new System("pop2", 0);
+    Model *model = new Model_Impl();
+    System* s1 = new System_Imp("pop1", 100);
+    System* s2 = new System_Imp("pop2", 0);
     Flow *flow = new ExponentialFlow();
     flow->setSource(s1);
     flow->setTarget(s2);
@@ -22,16 +22,19 @@ void exponentialFuncionalTest()
     assert(fabs(flow->execute() - 0.366032) < 0.0001);
 
     delete model;
+    delete s1;
+    delete s2;
+    delete flow;
 
 }
 
 void logisticalFuncionalTest()
 {
-
-    System* s1 = new System("p1", 100);
-    System* s2 = new System("p2", 10);
+    Model *model = new Model_Impl();
+    System* s1 = new System_Imp("p1", 100);
+    System* s2 = new System_Imp("p2", 10);
     Flow *flow = new LogisticFlow();
-    Model *model = new Model();
+
 
     flow->setSource(s1);
     flow->setTarget(s2);
@@ -46,17 +49,20 @@ void logisticalFuncionalTest()
 
 
     delete model;
+    delete s1;
+    delete s2;
+    delete flow;
 }
 
 void complexFuncionalTest()
 {
 
-    Model *ComplexModel = new Model();
-    System* q1 = new System("q1", 100);
-    System* q2 = new System("q2", 0);
-    System* q3 = new System("q3", 100);
-    System* q4 = new System("q4", 0);
-    System* q5 = new System("q5", 0);
+    Model *ComplexModel = new Model_Impl();
+    System* q1 = new System_Imp("q1", 100);
+    System* q2 = new System_Imp("q2", 0);
+    System* q3 = new System_Imp("q3", 100);
+    System* q4 = new System_Imp("q4", 0);
+    System* q5 = new System_Imp("q5", 0);
     Flow* f = new ExponentialFlow("f", q1, q2);
     Flow* g = new ExponentialFlow("g", q1, q3);
     Flow* r = new ExponentialFlow("r", q2, q5);
@@ -93,5 +99,16 @@ void complexFuncionalTest()
     assert(fabs(q5->getValue() - 16.4612) < 0.0001);
 
     delete ComplexModel;
+    delete q1;
+    delete q2;
+    delete q3;
+    delete q4;
+    delete q5;
+    delete f;
+    delete g;
+    delete t;
+    delete r;
+    delete u;
+    delete v;
 }
 

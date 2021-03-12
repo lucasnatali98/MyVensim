@@ -2,28 +2,50 @@
 #define SYSTEM_H
 #include <string>
 #include <iostream>
+
+
 using namespace std;
 /**
- * @brief The System class
+ * @brief The System interface
  */
 
 class System
 {
-protected:
-    string name;
-    double value;
+
 private:
-    System &operator=(System&);
-    System(const System& sys);
+
+  //
 public:
-    System();
-    System(string name, double value);
-    virtual ~System();
-    string getName() const;
-    void setName(const string &value);
-    double getValue() const;
-    void setValue(double value);
-    friend ostream &operator<<(ostream &out, const System &s);
+    /**
+     * @brief ~System
+     */
+    virtual ~System(){}
+
+    /**
+     * @brief getName
+     * @return string
+     */
+    virtual string getName() const = 0;
+
+    /**
+     * @brief setName
+     * @param value: type = string
+     */
+    virtual void setName(const string &value) = 0;
+
+    /**
+     * @brief getValue
+     * @return double
+     */
+    virtual double getValue() const = 0;
+
+    /**
+     * @brief setValue
+     * @param value: type = double
+     */
+    virtual void setValue(double value) = 0;
+    //virtual System &operator=(System&)=0;
+
 
 };
 
