@@ -2,6 +2,9 @@
 #define FLOW_IMP_H
 #include "flow.h"
 #include <iostream>
+/**
+ * @brief The Flow_Imp class
+ */
 class Flow_Imp : public Flow
 {
 protected:
@@ -9,41 +12,49 @@ protected:
     System *source;
     System *target;
 public:
+
+    /**
+     * @brief Flow_Imp: Constructor
+     */
     Flow_Imp();
     /**
-     * @brief Flow_Imp
-     * @param name - type: String
+     * @brief Flow_Imp: Constructor
+     * @param name
      */
     Flow_Imp(string name);
     /**
-     * @brief Flow_Imp
-     * @param name
-     * @param source
-     * @param target
+     * @brief Flow_Imp: Constructor
+     * @param name: flow name
+     * @param source: source system
+     * @param target: target system
      */
     Flow_Imp(string name, System *source, System *target);
 
     /**
-     * @brief ~Flow_Imp
+     * @brief ~Flow_Imp: Destructor
      */
     virtual ~Flow_Imp();
     /**
      * @brief setSource
-     * @param source : pointer to System
+     * @param source: source system
      */
     void setSource(System *source);
     /**
      * @brief setTarget
-     * @param target : pointer to System
+     * @param target: target system
      */
     void setTarget(System *target);
     /**
-     * @brief connect
-     * @param s1 : pointer to System
-     * @param s2 : pointer to System
+     * @brief connect: connects a flow to two systems
+     * @param s1: source system
+     * @param s2: target system
      */
     void connect(System *s1, System *s2);
 
+    /**
+     * @brief execute
+     * @return double
+     */
     virtual double execute();
 
     /**
@@ -67,16 +78,28 @@ public:
      */
     System *getTarget() const;
 
-    bool operator==(const Flow &rhs) const ;
+    /**
+     * @brief operator ==
+     * @param rhs: type = Flow&
+     * @return bool
+     */
+    bool operator==(const Flow_Imp &rhs) const ;
 
+    /**
+     * @brief Flow_Imp
+     * @param f
+     */
+    Flow_Imp(const Flow_Imp& flow);
 private:
-    Flow_Imp(const Flow_Imp& f);
+
+
+
     /**
      * @brief operator =
-     * @param f : type = Flow_Imp&
+     * @param f
      * @return Flow_Imp
      */
-    Flow_Imp &operator=(const Flow_Imp& f);
+    Flow_Imp &operator=(const Flow_Imp& flow);
 };
 
 #endif // FLOW_IMP_H

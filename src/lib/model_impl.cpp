@@ -86,6 +86,13 @@ Model_Impl::Model_Impl(const Model_Impl &copy)
 
 }
 
+bool Model_Impl::operator==(const Model_Impl &rhs) const
+{
+    return this->flows == rhs.flows &&
+            this->sys == rhs.sys &&
+            this->getName() == rhs.getName();
+}
+
 Model_Impl::SystemIterator Model_Impl::systemIteratorBegin()
 {
     return sys.begin();
@@ -114,10 +121,7 @@ void Model_Impl::results(){
     }
 }
 
-bool Model_Impl::operator==(const Model &rhs) const
-{
 
-}
 
 void Model_Impl::execute(double start, double final, double inc)
 {

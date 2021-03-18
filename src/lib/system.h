@@ -11,10 +11,6 @@ using namespace std;
 
 class System
 {
-
-private:
-
-  //
 public:
     /**
      * @brief ~System
@@ -29,7 +25,7 @@ public:
 
     /**
      * @brief setName
-     * @param value: type = string
+     * @param value
      */
     virtual void setName(const string &value) = 0;
 
@@ -41,11 +37,9 @@ public:
 
     /**
      * @brief setValue
-     * @param value: type = double
+     * @param value
      */
     virtual void setValue(double value) = 0;
-    //virtual System &operator=(System&)=0;
-
 
 };
 

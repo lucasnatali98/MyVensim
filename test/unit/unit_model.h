@@ -3,19 +3,19 @@
 #include <assert.h>
 #include <cmath>
 #include <algorithm>
-#include "../../src/model.h"
-#include "../../src/model_impl.h"
-#include "../../src/flow.h"
-#include "../../src/flow_imp.h"
-#include "../../src/exponentialflow.h"
-#include "../../src/logisticflow.h"
-#include "../../src/system_imp.h"
+#include "../../src/lib/model.h"
+#include "../../src/lib/model_impl.h"
+#include "../../src/lib/flow.h"
+#include "../../src/lib/flow_imp.h"
+#include "../../src/lib/exponentialflow.h"
+#include "../../src/lib/logisticflow.h"
+#include "../../src/lib/system_imp.h"
 
 
 void unit_Model_getName();
 void unit_Model_setName();
 void unit_Model_Constructor();
-
+//void unit_Model_assignmentOperator();
 void unit_Model_addFlow();
 void unit_Model_addSystem();
 void unit_Model_removeFlow();

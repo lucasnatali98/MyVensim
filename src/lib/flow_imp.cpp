@@ -66,7 +66,7 @@ System *Flow_Imp::getTarget() const
     return target;
 }
 
-bool Flow_Imp::operator==(const Flow &rhs) const
+bool Flow_Imp::operator==(const Flow_Imp &rhs) const
 {
     return this->name == rhs.getName() &&
             this->source == rhs.getSource() &&

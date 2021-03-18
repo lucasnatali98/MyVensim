@@ -1,23 +1,23 @@
 TEMPLATE: lib
 CONFIG += ordered
 SOURCES += \
-    main.cpp \
-    exponentialflow.cpp \
-    flow.cpp \
-    logisticflow.cpp \
-    model.cpp \
-    system.cpp \
-    model_impl.cpp \
-    flow_imp.cpp \
-    system_imp.cpp
+    lib/exponentialflow.cpp \
+    lib/flow.cpp \
+    lib/flow_imp.cpp \
+    lib/logisticflow.cpp \
+    lib/model.cpp \
+    lib/model_impl.cpp \
+    lib/system.cpp \
+    lib/system_imp.cpp \
+    main.cpp
 
 HEADERS += \
-    exponentialflow.h \
-    flow.h \
-    logisticflow.h \
-    model.h \
-    system.h \
-    model_impl.h \
-    flow_imp.h \
-    system_imp.h
+    lib/exponentialflow.h \
+    lib/flow.h \
+    lib/flow_imp.h \
+    lib/logisticflow.h \
+    lib/model.h \
+    lib/model_impl.h \
+    lib/system.h \
+    lib/system_imp.h
 

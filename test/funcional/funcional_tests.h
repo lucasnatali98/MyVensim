@@ -1,11 +1,11 @@
 #ifndef FUNCIONAL_TESTS_H
 #define FUNCIONAL_TESTS_H
-#include "../../src/model.h"
-#include "../../src/flow_imp.h"
-#include "../../src/system_imp.h"
-#include "../../src/model_impl.h"
-#include "../../src/exponentialflow.h"
-#include "../../src/logisticflow.h"
+#include "../../src/lib/model.h"
+#include "../../src/lib/flow_imp.h"
+#include "../../src/lib/system_imp.h"
+#include "../../src/lib/model_impl.h"
+#include "../../src/lib/exponentialflow.h"
+#include "../../src/lib/logisticflow.h"
 #include <cassert>
 #include <cmath>
 

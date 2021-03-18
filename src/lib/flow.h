@@ -9,32 +9,33 @@ using namespace std;
 class Flow
 {
 public:
+
     /**
-     * @brief ~Flow
+     * @brief ~Flow: Destructor
      */
     virtual ~Flow(){}
 
     /**
      * @brief setSource
-     * @param source: type = System*
+     * @param source: source system
      */
     virtual void setSource(System *source)=0;
 
     /**
      * @brief setTarget
-     * @param target: type = System*
+     * @param target: target system
      */
     virtual void setTarget(System *target)=0;
 
     /**
-     * @brief connect
-     * @param s1: type=System*
-     * @param s2: type=System*
+     * @brief connect: connects a stream to two systems
+     * @param s1: source system
+     * @param s2: target system
      */
     virtual void connect(System *s1, System *s2)=0;
 
     /**
-     * @brief execute
+     * @brief execute: performs the function associated with the flow
      * @return double
      */
     virtual double execute()=0;
@@ -46,27 +47,24 @@ public:
     virtual string getName() const = 0;
 
     /**
-     * @brief setName
-     * @param value: type = string
+     * @brief setName: set flow name
+     * @param value: flow name
      */
     virtual void setName(const string &value) = 0;
 
     /**
-     * @brief getSource
+     * @brief getSource: return the source system
      * @return System*
      */
     virtual System *getSource() const = 0;
 
     /**
-     * @brief getTarget
+     * @brief getTarget: return the target system
      * @return System*
      */
     virtual System *getTarget() const = 0;
 
 
-private:
-
-   // Flow &operator=(const Flow& f);
 };
 
 #endif // FLOW_H

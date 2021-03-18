@@ -14,25 +14,19 @@ public:
      */
     LogisticFlow();
 
-    /**
-     * @brief LogisticFlow: Constructor
-     * @param name: type = string
-     * @param source: type = System*
-     * @param target: type = System*
-     */
 
     /**
-     * @brief LogisticFlow
-     * @param name: type = string
+     * @brief LogisticFlow: Constructor
+     * @param name: flow name
      */
     LogisticFlow(string name);
 
 
     /**
-     * @brief LogisticFlow
-     * @param name: type = string
-     * @param source: type = System*
-     * @param target: type = System*
+     * @brief LogisticFlow: Constructor
+     * @param name: flow name
+     * @param source: source system
+     * @param target: target system
      */
     LogisticFlow(string name, System *source, System *target);
 
@@ -43,14 +37,14 @@ public:
 
     /**
      * @brief operator <<: override output operator
-     * @param out: type = ostream&
-     * @param f: type = LogisticFlow&
+     * @param out
+     * @param f
      * @return ostream
      */
     friend ostream &operator<<(ostream &out, const LogisticFlow &f);
 
     /**
-     * @brief execute
+     * @brief execute: performs the function associated with the flow
      * @return double
      */
     double execute();

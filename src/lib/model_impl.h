@@ -5,6 +5,7 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+
 #include "exponentialflow.h"
 #include "logisticflow.h"
 
@@ -21,15 +22,19 @@ protected:
     string name;
 public:
 
+    /**
+     * @brief Model_Impl: Constructor
+     */
     Model_Impl();
 
     /**
-     * @brief Model_Impl
-     * @param name - type: string
+     * @brief Model_Impl: Constructor
+     * @param name: string
      */
     Model_Impl(string name);
 
     virtual ~Model_Impl();
+
     /**
      * @brief getName
      * @return string
@@ -38,7 +43,7 @@ public:
 
     /**
      * @brief setName
-     * @param value
+     * @param value: string
      */
     void setName(const string &value);
 
@@ -67,30 +72,31 @@ public:
     FlowIterator flowIteratorEnd();
 
     /**
-     * @brief add
-     * @param system : pointer to System
+     * @brief add: add a system in the model
+     * @param system: System*
      */
     void add(System *system);
 
     /**
-     * @brief add
-     * @param flow : pointer to Flow
+     * @brief add: add a flow in the model
+     * @param flow: Flow*
      */
     void add(Flow *flow);
 
     /**
-     * @brief remove
-     * @param system : pointer to System
+     * @brief remove: remove a System
+     * @param system: System*
      * @return bool
      */
     bool remove(System *system);
 
     /**
-     * @brief remove
-     * @param flow : pointer to Flow
+     * @brief remove: remove a flow
+     * @param flow: Flow*
      * @return bool
      */
     bool remove(Flow *flow);
+
     /**
      * @brief execute
      * @param start: initial time - type: double
@@ -100,32 +106,41 @@ public:
     void execute(double start, double final, double inc);
 
     /**
-     * @brief printSystems
+     * @brief printSystems: print all systems in the model
      */
     void printSystems();
     /**
-     * @brief printFlows: list all flows in the model
+     * @brief printFlows: print all flows in the model
      */
     void printFlows();
+
     /**
-     * @brief results
+     * @brief results: results after model execution
      */
     void results();
 
-    bool operator==(const Model &rhs) const ;
-private:
+    /**
+     * @brief operator == : equality operator overload
+     * @param rhs: Model&
+     * @return
+     */
 
     /**
-     * @brief operator =
+     * @brief operator = : overload of the assignment operator
      * @return Model_Impl
      */
     Model_Impl &operator=(Model_Impl&);
 
     /**
-     * @brief Model_Impl
+     * @brief Model_Impl: constructor of copy
      * @param copy: Model_Impl&
      */
     Model_Impl(const Model_Impl &copy);
+
+
+    bool operator==(const Model_Impl &rhs) const ;
+
+
 };
 
 #endif // MODEL_IMPL_H

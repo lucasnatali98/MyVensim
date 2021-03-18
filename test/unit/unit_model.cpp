@@ -4,15 +4,17 @@
 
 void unit_Model_Constructor()
 {
-    Model* model1 = new Model_Impl();
-    Model* model2 = new Model_Impl("model2");
-   // Model* model3 = new Model_Impl(model2);
+    Model_Impl* model1 = new Model_Impl();
+    Model_Impl* model2 = new Model_Impl("model2");
+    Model_Impl* model3 = new Model_Impl(*model2);
 
     assert(model1->getName() == "Default");
-    assert(model2->getName() == "model2");
-    //assert(model3 == model2);
 
-   // delete model3;
+    assert(model2->getName() == "model2");
+
+    assert(*model3 == *model2);
+
+    delete model3;
     delete model2;
     delete model1;
 }

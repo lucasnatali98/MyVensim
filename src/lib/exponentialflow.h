@@ -16,15 +16,15 @@ public:
 
     /**
      * @brief ExponentialFlow
-     * @param name: type = string
+     * @param name: flow name
      */
     ExponentialFlow(string name);
 
     /**
      * @brief ExponentialFlow
-     * @param name: type = string
-     * @param source: type = System*
-     * @param target: type = System*
+     * @param name: flow name
+     * @param source: source system
+     * @param target: target system
      */
     ExponentialFlow(string name, System *source, System *target);
     /**
@@ -34,17 +34,19 @@ public:
 
     /**
      * @brief operator << : override output operator
-     * @param out: type = ostream&
-     * @param f: type = ExponentialFlow&
+     * @param out
+     * @param f
      * @return ostream
      */
     friend ostream &operator<<(ostream &out, const ExponentialFlow &f);
 
     /**
-     * @brief execute
+     * @brief execute: performs the function associated with the flow
      * @return double
      */
     double execute();
+
+
 };
 
 #endif // EXPONENTIALFLOW_H

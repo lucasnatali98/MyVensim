@@ -1,13 +1,12 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-
-
 #include "system.h"
-#include "exponentialflow.h"
-#include "logisticflow.h"
+#include "flow.h"
 #include <vector>
+
 using namespace std;
+
 /**
  * @brief The Model interface
  */
@@ -25,27 +24,27 @@ public:
 
 
     /**
-     * @brief add
-     * @param s: type = System*
+     * @brief add: add a system in the model
+     * @param system
      */
-    virtual void add(System *s)=0;
+    virtual void add(System *system)=0;
 
     /**
-     * @brief add
-     * @param f: type = Flow*
+     * @brief add: add a flow in the model
+     * @param flow
      */
-    virtual void add(Flow *f)=0;
+    virtual void add(Flow *flow)=0;
 
     /**
-     * @brief remove
-     * @param system: type = System*
+     * @brief remove: remove a system
+     * @param system
      * @return bool
      */
     virtual bool remove(System *system)=0;
 
     /**
-     * @brief remove
-     * @param flow: type = Flow*
+     * @brief remove: remove a flow
+     * @param flow
      * @return bool
      */
     virtual bool remove(Flow *flow)=0;
@@ -75,25 +74,25 @@ public:
     virtual FlowIterator flowIteratorEnd()=0;
 
     /**
-     * @brief printSystems
+     * @brief printSystems: print all systems
      */
     virtual void printSystems()=0;
 
     /**
-     * @brief printFlows
+     * @brief printFlows: print all flows
      */
     virtual void printFlows()=0;
 
     /**
-     * @brief results
+     * @brief results: results after model execution
      */
     virtual void results()=0;
 
     /**
-     * @brief execute
-     * @param start: type = double
-     * @param final: type = double
-     * @param inc: type = double
+     * @brief execute: runs the model
+     * @param start: initial time
+     * @param final: final time
+     * @param inc: increment
      */
     virtual void execute(double start, double final, double inc)=0;
 
@@ -105,7 +104,7 @@ public:
 
     /**
      * @brief setName
-     * @param value: type = string
+     * @param value
      */
     virtual void setName(const string &value)=0;
 };

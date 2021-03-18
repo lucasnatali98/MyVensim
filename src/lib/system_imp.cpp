@@ -40,10 +40,12 @@ System_Imp::System_Imp(string name, double value)
     this->name = name;
     this->value = value;
 }
+
 ostream& operator<<(ostream &out, const System &s){
     out <<s.getName()<<", "<<s.getValue()<<endl;
     return out;
 }
+
 System_Imp &System_Imp::operator=(System_Imp &copy)
 {
     if(&copy == this) return (*this);

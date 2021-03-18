@@ -23,8 +23,8 @@ public:
 
     /**
      * @brief System_Imp
-     * @param name - type:string
-     * @param value - type: double
+     * @param name
+     * @param value
      */
     System_Imp(string name, double value);
 
@@ -36,7 +36,7 @@ public:
 
     /**
      * @brief setName
-     * @param value - type: string
+     * @param value
      */
     void setName(const string &value);
 
@@ -48,7 +48,7 @@ public:
 
     /**
      * @brief setValue
-     * @param value - type: double
+     * @param value
      */
     void setValue(double value);
 
@@ -61,17 +61,30 @@ public:
      */
     friend ostream &operator<<(ostream &out, const System &s);
 
+    /**
+     * @brief operator ==
+     * @param rhs
+     * @return bool
+     */
     bool operator==(const System &rhs) const ;
 
-
-private:
-
+    /**
+     * @brief System_Imp
+     * @param sys
+     */
     System_Imp(const System_Imp& sys);
+
     /**
      * @brief operator =
      * @return System_Imp
      */
     System_Imp &operator=(System_Imp&);
+
+private:
+
+
+
+
 
 };
 
