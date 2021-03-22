@@ -7,6 +7,7 @@
  */
 class Flow_Imp : public Flow
 {
+
 protected:
     string name;
     System *source;
@@ -83,7 +84,7 @@ public:
      * @param rhs: type = Flow&
      * @return bool
      */
-    bool operator==(const Flow_Imp &rhs) const ;
+    bool operator==(const Flow &rhs) const ;
 
     /**
      * @brief Flow_Imp

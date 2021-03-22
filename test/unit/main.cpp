@@ -1,7 +1,8 @@
 #include <iostream>
-#include "unit_system.h"
-#include "unit_flow.h"
-#include "unit_model.h"
+#include "lib/unit_system.h"
+#include "lib/unit_flow.h"
+
+#include "lib/unit_model.h"
 using namespace std;
 
 int main()

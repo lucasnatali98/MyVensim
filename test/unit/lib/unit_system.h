@@ -1,6 +1,8 @@
 #ifndef UNIT_SYSTEM_H
 #define UNIT_SYSTEM_H
-#include "../../src/lib/system_imp.h"
+#include "../../../src/lib/model.h"
+
+
 #include <assert.h>
 #include <algorithm>
 #include <cmath>

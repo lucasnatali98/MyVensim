@@ -4,24 +4,24 @@
 
 void unit_Model_Constructor()
 {
-    Model_Impl* model1 = new Model_Impl();
-    Model_Impl* model2 = new Model_Impl("model2");
-    Model_Impl* model3 = new Model_Impl(*model2);
+    Model* model1 = Model::createModel();
+    Model* model2 = Model::createModel("model2");
+    //Model* model3 = Model::createModel(*model2);
 
     assert(model1->getName() == "Default");
 
     assert(model2->getName() == "model2");
 
-    assert(*model3 == *model2);
+    //assert(*model3 == *model2);
 
-    delete model3;
+    //delete model3;
     delete model2;
     delete model1;
 }
 
 void unit_Model_getName()
 {
-    Model* model = new Model_Impl();
+    Model* model = Model::createModel();
     model->setName("model");
     assert(model->getName() == "model");
     delete model;
@@ -29,18 +29,18 @@ void unit_Model_getName()
 
 void unit_Model_setName()
 {
-    Model_Impl m1;
-    m1.setName("model_test");
-    assert(m1.getName() == "model_test");
+    Model* model = Model::createModel();
+
+    model->setName("model_test");
+    assert(model->getName() == "model_test");
 }
 
 void unit_Model_addFlow()
 {
-    Model* model = new Model_Impl();
-    Flow *flow = new ExponentialFlow("ExpFlow");
-    Flow *flow2 = new LogisticFlow("LogFlow");
-    model->add(flow);
-    model->add(flow2);
+    Model* model = Model::createModel();
+    Flow *flow = model->createFlow<ExponentialFlow>("ExpFlow");
+    Flow *flow2 = model->createFlow<LogisticFlow>("LogFlow");
+
 
     auto it = find(model->flowIteratorBegin(),
                    model->flowIteratorEnd(), flow);
@@ -56,9 +56,9 @@ void unit_Model_addFlow()
 
 void unit_Model_addSystem()
 {
-    Model* model = new Model_Impl();
-    System *sys = new System_Imp("S1", 10);
-    model->add(sys);
+    Model* model = Model::createModel();
+    System *sys = model->createSystem("S1", 10);
+
 
     auto it = find(model->systemIteratorBegin(),
                    model->systemIteratorEnd(), sys);
@@ -71,11 +71,10 @@ void unit_Model_addSystem()
 
 void unit_Model_removeFlow()
 {
-    Model* model = new Model_Impl();
-    Flow *flow = new ExponentialFlow();
-    Flow *flow2 = new LogisticFlow();
-    model->add(flow);
-    model->add(flow2);
+    Model* model = Model::createModel();
+    Flow *flow = model->createFlow<ExponentialFlow>();
+    Flow *flow2 = model->createFlow<LogisticFlow>();
+
     model->remove(flow);
 
     auto it = find(model->flowIteratorBegin(),
@@ -91,11 +90,10 @@ void unit_Model_removeFlow()
 
 void unit_Model_removeSystem()
 {
-    Model* model = new Model_Impl();
-    System *sys = new System_Imp("S1", 10);
-    System *sys2 = new System_Imp("S2", 20);
-    model->add(sys);
-    model->add(sys2);
+    Model* model = Model::createModel();
+    System *sys = model->createSystem("S1", 10);
+    System *sys2 = model->createSystem("S2", 20);
+
     model->remove(sys);
 
     auto it = find(model->systemIteratorBegin(),

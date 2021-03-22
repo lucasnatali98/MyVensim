@@ -10,10 +10,47 @@ Model_Impl::Model_Impl(string name)
     this->name = name;
 }
 
-Model_Impl::~Model_Impl()
-{
+Model_Impl::~Model_Impl(){}
 
+
+vector<Model*> Model_Impl::models;
+Model *Model::createModel()
+{
+    return Model_Impl::createModel();
 }
+Model *Model_Impl::createModel()
+{
+    Model* model = new Model_Impl();
+    models.push_back(model);
+    return model;
+}
+Model *Model::createModel(string model_name)
+{
+    return Model_Impl::createModel(model_name);
+}
+Model *Model_Impl::createModel(string model_name)
+{
+    Model* model = new Model_Impl(model_name);
+    models.push_back(model);
+    return model;
+}
+
+System *Model_Impl::createSystem(string name, double value)
+{
+    System* sys = new System_Imp(name, value);
+    add(sys);
+    return sys;
+}
+
+System *Model_Impl::createSystem()
+{
+    System* sys = new System_Imp();
+    add(sys);
+    return sys;
+}
+
+
+
 void Model_Impl::add(System *system)
 {
     sys.push_back(system);

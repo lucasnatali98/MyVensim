@@ -3,13 +3,9 @@
 #include <assert.h>
 #include <cmath>
 #include <algorithm>
-#include "../../src/lib/model.h"
-#include "../../src/lib/model_impl.h"
-#include "../../src/lib/flow.h"
-#include "../../src/lib/flow_imp.h"
-#include "../../src/lib/exponentialflow.h"
-#include "../../src/lib/logisticflow.h"
-#include "../../src/lib/system_imp.h"
+#include "../../../src/lib/model.h"
+#include "../../../src/lib/exponentialflow.h"
+#include "../../../src/lib/logisticflow.h"
 
 
 void unit_Model_getName();

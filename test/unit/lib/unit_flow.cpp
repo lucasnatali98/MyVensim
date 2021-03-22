@@ -3,25 +3,29 @@
 
 void unit_Flow_setName()
 {
-    Flow_Imp f1;
-    f1.setName("F1");
-    assert(f1.getName() == "F1");
+    Model* model = Model::createModel("model");
+    Flow *f1 = model->createFlow<Flow_Imp>("F1");
+    assert(f1->getName() == "F1");
 }
 
 void unit_Flow_getName()
 {
-    Flow_Imp f1;
-    f1.setName("F1");
-    assert(f1.getName() == "F1");
+    Model* model = Model::createModel("model");
+    Flow *f1 = model->createFlow<Flow_Imp>();
+
+    f1->setName("F1");
+    assert(f1->getName() == "F1");
 }
 
 void unit_Flow_getSource()
 {
-    System *s1 = new System_Imp("S1", 10);
-    Flow *f1 = new Flow_Imp("f1");
+    Model* model = Model::createModel("model");
+    System *s1 = model->createSystem("S1", 10);
+    Flow *f1 = model->createFlow<Flow_Imp>("F1");
     f1->setSource(s1);
     assert(f1->getSource() == s1);
 
+    delete model;
     delete s1;
     delete f1;
 
@@ -29,47 +33,55 @@ void unit_Flow_getSource()
 
 void unit_Flow_setSource()
 {
-    System *s1 = new System_Imp("S1", 10);
-    Flow *f1 = new Flow_Imp("f1");
+    Model *model = Model::createModel("model");
+    System *s1 = model->createSystem("S1", 10);
+    Flow *f1 = model->createFlow<Flow_Imp>("f1");
     f1->setSource(s1);
     assert(f1->getSource() == s1);
 
+    delete model;
     delete s1;
     delete f1;
 }
 
 void unit_Flow_setTarget()
 {
-    System *s1 = new System_Imp("S1", 10);
-    Flow *f1 = new Flow_Imp("f1");
+    Model *model = Model::createModel("model");
+    System *s1 = model->createSystem("S1", 10);
+    Flow *f1 = model->createFlow<Flow_Imp>("f1");
     f1->setTarget(s1);
     assert(f1->getTarget() == s1);
 
+    delete model;
     delete s1;
     delete f1;
 }
 
 void unit_Flow_getTarget()
 {
-    System *s1 = new System_Imp("S1", 10);
-    Flow *f1 = new Flow_Imp("f1");
+    Model *model = Model::createModel("model");
+    System *s1 = model->createSystem("S1", 10);
+    Flow *f1 = model->createFlow<Flow_Imp>("f1");
     f1->setTarget(s1);
     assert(f1->getTarget() == s1);
 
+    delete model;
     delete s1;
     delete f1;
 }
 
 void unit_Flow_connect()
 {
-    System *s1 = new System_Imp("S1", 10);
-    System *s2 = new System_Imp("S2", 20);
-    Flow *f1 = new Flow_Imp("f1");
+    Model *model = Model::createModel("model");
+    System *s1 = model->createSystem("S1", 10);
+    System *s2 = model->createSystem("S2", 20);
+    Flow *f1 = model->createFlow<Flow_Imp>("f1");
     f1->setSource(s1);
     f1->setTarget(s2);
     assert(f1->getSource() == s1);
     assert(f1->getTarget() == s2);
 
+    delete model;
     delete s1;
     delete s2;
     delete f1;
@@ -78,16 +90,17 @@ void unit_Flow_connect()
 
 void unit_Flow_Constructor()
 {
-    System *s1 = new System_Imp("S1", 10);
-    System *s2 = new System_Imp("S2", 15);
-    Flow_Imp *f1 = new Flow_Imp();
-    Flow_Imp *f2 = new Flow_Imp("flow2");
-    Flow_Imp *f3 = new Flow_Imp("flow3", s1, s2);
+    Model *model = Model::createModel("model");
+    System *s1 = model->createSystem("S1", 10);
+    System *s2 = model->createSystem("S2", 15);
+    Flow *f1 = model->createFlow<Flow_Imp>();
+    Flow *f2 = model->createFlow<Flow_Imp>("flow2");
+    Flow *f3 = model->createFlow<Flow_Imp>("flow3", s1, s2);
 
-    Flow_Imp *f4 = new Flow_Imp(*f3);
+    //Flow_Imp *f4 = new Flow_Imp(*f3);
 
     //Empty constructor
-    assert(f1->getName() == "Default");
+    assert(f1->getName() == "");
     assert(f1->getSource() == nullptr);
     assert(f1->getTarget() == nullptr);
 
@@ -102,28 +115,30 @@ void unit_Flow_Constructor()
     assert(f3->getTarget() == s2);
 
     //Copy Constructor
-    assert(*f4 == *f3);
+    //assert(*f4 == *f3);
 
 
+    delete model;
     delete s1;
     delete s2;
     delete f1;
     delete f2;
     delete f3;
-    delete f4;
+    //delete f4;
 }
 
 void unit_Flow_execute()
 {
-    Flow *expF1 = new ExponentialFlow("ExpFlow");
-    Flow *logF1 = new LogisticFlow("LogisticFlow");
-    Flow *expF2 = new ExponentialFlow("ExpFlow2");
-    Flow *logF2 = new LogisticFlow("LogisticFlow2");
+    Model *model = Model::createModel("model");
+    Flow *expF1 = model->createFlow<ExponentialFlow>("ExpFlow");
+    Flow *logF1 = model->createFlow<LogisticFlow>("LogisticFlow");
+    Flow *expF2 = model->createFlow<ExponentialFlow>("ExpFlow2");
+    Flow *logF2 = model->createFlow<LogisticFlow>("LogisticFlow2");
 
-    System *s1 = new System_Imp("S1", 100);
-    System *s2 = new System_Imp("S2", 0);
-    System *s3 = new System_Imp("S3", 100);
-    System *s4 = new System_Imp("S4", 10);
+    System *s1 = model->createSystem("S1", 100);
+    System *s2 = model->createSystem("S2", 0);
+    System *s3 = model->createSystem("S3", 100);
+    System *s4 = model->createSystem("S4", 10);
 
     expF1->connect(s1,s2);
     logF1->connect(s3, s4);
@@ -136,6 +151,7 @@ void unit_Flow_execute()
     assert(expF1->execute() == expF2->execute());
     assert(logF1->execute() == logF2->execute());
 
+    delete model;
     delete expF1;
     delete logF1;
     delete expF2;
@@ -146,8 +162,10 @@ void unit_Flow_execute()
     delete s4;
 
 }
+/*
 void unit_Flow_assignmentOperator()
 {
+
 
     System_Imp *s1 = new System_Imp("S1", 10);
     System_Imp *s2 = new System_Imp("S2", 30);
@@ -165,7 +183,8 @@ void unit_Flow_assignmentOperator()
 
 
 }
-
+*/
+/*
 void unit_Flow_equalityOperator()
 {
     System *s1 = new System_Imp("S1", 10);
@@ -187,12 +206,12 @@ void unit_Flow_equalityOperator()
     delete s1;
     delete s2;
 }
-
+*/
 void run_unit_tests_Flow()
 {
     unit_Flow_Constructor();
-    unit_Flow_equalityOperator();
-    unit_Flow_assignmentOperator();
+   // unit_Flow_equalityOperator();
+   // unit_Flow_assignmentOperator();
     unit_Flow_setName();
     unit_Flow_getName();
     unit_Flow_setTarget();

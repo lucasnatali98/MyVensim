@@ -5,7 +5,7 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
-
+#include "system_imp.h"
 #include "exponentialflow.h"
 #include "logisticflow.h"
 
@@ -16,10 +16,10 @@
 class Model_Impl : public Model
 {
 protected:
-
     vector<Flow*> flows;
     vector<System*> sys;
     string name;
+    static vector<Model*> models;
 public:
 
     /**
@@ -34,6 +34,12 @@ public:
     Model_Impl(string name);
 
     virtual ~Model_Impl();
+
+    //factory
+    static Model* createModel(string model_name);
+    static Model* createModel();
+    System* createSystem(string, double);
+    System* createSystem();
 
     /**
      * @brief getName
@@ -71,31 +77,6 @@ public:
      */
     FlowIterator flowIteratorEnd();
 
-    /**
-     * @brief add: add a system in the model
-     * @param system: System*
-     */
-    void add(System *system);
-
-    /**
-     * @brief add: add a flow in the model
-     * @param flow: Flow*
-     */
-    void add(Flow *flow);
-
-    /**
-     * @brief remove: remove a System
-     * @param system: System*
-     * @return bool
-     */
-    bool remove(System *system);
-
-    /**
-     * @brief remove: remove a flow
-     * @param flow: Flow*
-     * @return bool
-     */
-    bool remove(Flow *flow);
 
     /**
      * @brief execute
@@ -139,6 +120,32 @@ public:
 
 
     bool operator==(const Model_Impl &rhs) const ;
+protected:
+    /**
+     * @brief add: add a system in the model
+     * @param system: System*
+     */
+    void add(System *system);
+
+    /**
+     * @brief add: add a flow in the model
+     * @param flow: Flow*
+     */
+    void add(Flow *flow);
+
+    /**
+     * @brief remove: remove a System
+     * @param system: System*
+     * @return bool
+     */
+    bool remove(System *system);
+
+    /**
+     * @brief remove: remove a flow
+     * @param flow: Flow*
+     * @return bool
+     */
+    bool remove(Flow *flow);
 
 
 };

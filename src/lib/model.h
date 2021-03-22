@@ -22,7 +22,21 @@ public:
      */
     virtual ~Model(){}
 
+    //Factory
 
+    static Model* createModel(string model_name);
+    static Model* createModel();
+
+    virtual System* createSystem(string, double)=0;
+    virtual System* createSystem()=0;
+
+    template<typename FLOW_IMP>
+    Flow* createFlow(string flow_name = "", System* source=nullptr, System* target=nullptr)
+    {
+       Flow* flow = new FLOW_IMP(flow_name, source, target);
+       add(flow);
+       return flow;
+    }
     /**
      * @brief add: add a system in the model
      * @param system
@@ -34,6 +48,7 @@ public:
      * @param flow
      */
     virtual void add(Flow *flow)=0;
+
 
     /**
      * @brief remove: remove a system

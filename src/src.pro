@@ -1,5 +1,5 @@
 TEMPLATE: lib
-CONFIG += ordered
+
 SOURCES += \
     lib/exponentialflow.cpp \
     lib/flow.cpp \
